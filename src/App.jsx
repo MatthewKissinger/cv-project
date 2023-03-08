@@ -1,13 +1,20 @@
+import React from 'react'
 import Header from './components/Header'
+import GeneralInfo from './components/GeneralInfo'
 import './styles/app.css'
 
-function App() {
+class App extends React.Component {
+  
 
-  return (
-    <div className="App">
-      <Header />
-    </div>
-  )
+  
+  render() {
+    return (
+      <div className="App">
+        <Header />
+        <GeneralInfo />
+      </div>
+    )
+  }
 }
 
 export default App
