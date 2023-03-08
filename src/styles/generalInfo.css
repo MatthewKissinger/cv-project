@@ -1,0 +1,26 @@
+.general--container {
+    border: 1px solid red;
+    display: flex;
+    height: 11rem;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 4rem;
+    padding-top: 2rem;
+}
+
+.input {
+    cursor: pointer;
+}
+
+.input:hover {
+    color: lightgray;
+}
+
+.general--name {
+    font-size: 3rem;
+}
+
+p {
+    font-size: .8rem;
+    margin-bottom: .3rem;
+}

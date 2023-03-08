@@ -4,6 +4,13 @@
     box-sizing: border-box;
 }
 
-body {
+html, body, #root {
     font-family: 'Poppins', sans-serif;
+    width: 100vw;
+}
+
+.resume--container {
+    border: 1px solid blue;
+    max-width: 210mm;
+    max-height: 297mm;
 }
