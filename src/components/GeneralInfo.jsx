@@ -11,14 +11,19 @@ class GeneralInfo extends React.Component {
                 </div>
                 <div className='general--right'>
                     <div className='general--phone input'>
-                        <p>555.641.2525</p>
+                        <i className='material-icons'>phone</i>
+                        <p>773.698.4956</p>
                     </div>
                     <div className='general--email input'>
-                        <p>jdoe@gmail.com</p>
+                        <i className='material-icons'>mail</i>
+                        <p>matthew.t.kissinger@gmail.com</p>
                     </div>
                     <div className='general--address input'>
-                        <p>123 Sesame St.</p>
-                        <p>New York, Ny 10001</p>
+                        <i className='material-icons'>place</i>
+                        <div>
+                            <p>10506 Riverside Dr.</p>
+                            <p>Toluca Lake, CA 91602</p>
+                        </div>
                     </div>
                 </div>
             </div>
