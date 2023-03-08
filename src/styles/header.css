@@ -1,0 +1,11 @@
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: -1px;
+    font-size: 1.25rem;
+    background-color: rgb(84, 84, 233);
+    height: 4.5rem;
+    color: white;
+    padding: 1rem;
+}

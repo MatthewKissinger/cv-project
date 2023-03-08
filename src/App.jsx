@@ -1,11 +1,11 @@
-import { useState } from 'react'
-import './App.css'
+import Header from './components/Header'
+import './styles/app.css'
 
 function App() {
 
   return (
     <div className="App">
-      Hello World
+      <Header />
     </div>
   )
 }
