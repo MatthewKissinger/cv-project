@@ -10,7 +10,10 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      name: 'Joe Schmoe',
+      name: {
+        text: 'Joe Schmoe',
+        editMode: false
+      },
       title: 'Web Developer',
       phone: '555.867.5309',
       email: 'joe.schmoe@gmail.com',
@@ -22,22 +25,29 @@ class App extends React.Component {
   }
 
   handleClick(e) {
-    console.log(e.target)
+    console.log(e.target.id)
+    console.log(this.state[e.target.id].editMode)
+    // setup the handle click to trigger on an edit button 
   }
+
+  
   
   render() {
+
+    const { name, title, phone, email, addressStreet, addressCity } = this.state;
+
     return (
       <div className="App">
         <Header />
         <div className='resume--container'>
           <GeneralInfo 
             toggleClick={this.handleClick}
-            userName={this.state.name}
-            userTitle={this.state.title}
-            userPhone={this.state.phone}
-            userEmail={this.state.email}
-            userStreet={this.state.addressStreet}
-            userCity={this.state.addressCity}
+            userName={name}
+            userTitle={title}
+            userPhone={phone}
+            userEmail={email}
+            userStreet={addressStreet}
+            userCity={addressCity}
           />
         </div>
       </div>

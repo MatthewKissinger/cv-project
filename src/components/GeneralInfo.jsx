@@ -10,27 +10,60 @@ class GeneralInfo extends React.Component {
         return (
             <div className='general--container'>
                 <div className='general--left'>
-                    <h1 
-                        onClick={toggleClick}
+                    <h1
                         className='general--name input'>
-                        {userName}
+                        {userName.text}
+                        <span 
+                            className='material-icons edit--btn'
+                            onClick={toggleClick}
+                            id='name'
+                            >
+                            mode_edit
+                        </span>
                     </h1>
-                    <h3 className='general--title input'>{userTitle}</h3>
+                    <h3 
+                        onClick={toggleClick}
+                        className='general--title input'
+                        id='title'
+                        >{userTitle}
+                    </h3>
                 </div>
                 <div className='general--right'>
-                    <div className='general--phone input'>
+                    <div className='general--phone'>
                         <i className='material-icons'>phone</i>
-                        <p>{userPhone}</p>
+                        <p 
+                            onClick={toggleClick}
+                            id='phone'
+                            className='input'>
+                            {userPhone}
+                        </p>
                     </div>
-                    <div className='general--email input'>
+                    <div className='general--email'>
                         <i className='material-icons'>mail</i>
-                        <p>{userEmail}</p>
+                        <p
+                            onClick={toggleClick}
+                            id='email'
+                            className='input'>
+                            {userEmail}
+                        </p>
                     </div>
-                    <div className='general--address input'>
+                    <div className='general--address'>
                         <i className='material-icons'>place</i>
                         <div>
-                            <p>{userStreet}</p>
-                            <p>{userCity}</p>
+                            <p
+                                onClick={toggleClick}
+                                id='addressStreet'
+                                className='input'
+                                >
+                                {userStreet}
+                            </p>
+                            <p
+                                onClick={toggleClick}
+                                id='addressCity'
+                                className='input'
+                                >
+                                {userCity}
+                            </p>
                         </div>
                     </div>
                 </div>

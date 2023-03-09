@@ -11,11 +11,14 @@
     font-weight: 300;
 }
 
-.input {
+.edit--btn {
     cursor: pointer;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: .1rem;
 }
 
-.input:hover {
+.edit--btn:hover {
     color: lightgray;
 }
 
