@@ -11,7 +11,15 @@
     font-weight: 300;
 }
 
+.info {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
 .edit--btn {
+    visibility: hidden;
+    margin-left: .5rem;
     cursor: pointer;
     border: 1px solid black;
     border-radius: 3px;
@@ -20,6 +28,10 @@
 
 .edit--btn:hover {
     color: lightgray;
+}
+
+.info:hover > .edit--btn {
+    visibility: visible;
 }
 
 .general--name {

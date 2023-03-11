@@ -21,13 +21,24 @@ class App extends React.Component {
       addressCity: 'New York City, NY 10001'
     }
 
-    this.handleClick = this.handleClick.bind(this);
+    this.toggleEdit = this.toggleEdit.bind(this);
   }
 
-  handleClick(e) {
-    console.log(e.target.id)
-    console.log(this.state[e.target.id].editMode)
+  
+
+  toggleEdit(e) {
+    
+    const elementID = e.target.id;
+    
     // setup the handle click to trigger on an edit button 
+
+    this.setState({
+      ...this.state,
+      [elementID]: {
+        ...this.state[elementID],
+        editMode: !this.state[elementID].editMode
+    }
+    })
   }
 
   
@@ -41,7 +52,7 @@ class App extends React.Component {
         <Header />
         <div className='resume--container'>
           <GeneralInfo 
-            toggleClick={this.handleClick}
+            toggleEdit={this.toggleEdit}
             userName={name}
             userTitle={title}
             userPhone={phone}
