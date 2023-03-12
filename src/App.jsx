@@ -21,27 +21,40 @@ class App extends React.Component {
       addressCity: 'New York City, NY 10001'
     }
 
+    this.handleChange = this.handleChange.bind(this);
     this.toggleEdit = this.toggleEdit.bind(this);
+    this.toggleSubmit = this.toggleSubmit.bind(this);
   }
 
-  
-
-  toggleEdit(e) {
-    
-    const elementID = e.target.id;
-    
-    // setup the handle click to trigger on an edit button 
+  handleChange(e) {
+    const { value } = e.target;
+    const name = e.target.dataset.name;
 
     this.setState({
       ...this.state,
-      [elementID]: {
-        ...this.state[elementID],
-        editMode: !this.state[elementID].editMode
+      [name]: {
+        ...this.state[name],
+        text: value
+      }
+    })
+  }
+
+  toggleEdit(e) {
+    
+    const { id } = e.target;
+
+    this.setState({
+      ...this.state,
+      [id]: {
+        ...this.state[id],
+        editMode: !this.state[id].editMode
     }
     })
   }
 
-  
+  toggleSubmit(e) {
+
+  }  
   
   render() {
 
@@ -52,7 +65,9 @@ class App extends React.Component {
         <Header />
         <div className='resume--container'>
           <GeneralInfo 
+            handleChange={this.handleChange}
             toggleEdit={this.toggleEdit}
+            toggleSubmit={this.toggleSubmit}
             userName={name}
             userTitle={title}
             userPhone={phone}

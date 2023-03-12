@@ -7,6 +7,18 @@
     border-bottom: 2px solid lightgray;
 }
 
+.general--name {
+    display: flex;
+    justify-content: space-between;
+    height: 74px;
+    width: 340px;
+    border: 1px solid red;
+}
+
+.general--name > h1 {
+    font-size: 3rem;
+}
+
 .general--title {
     font-weight: 300;
 }
@@ -15,6 +27,10 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+}
+
+.info:hover > .edit--btn {
+    visibility: visible;
 }
 
 .edit--btn {
@@ -30,12 +46,21 @@
     color: lightgray;
 }
 
-.info:hover > .edit--btn {
-    visibility: visible;
+input {
+    padding: .3rem;
+    font-size: 1rem;
 }
 
-.general--name {
-    font-size: 3rem;
+.submit--btn {
+    cursor: pointer;
+    margin-left: .5rem;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: .1rem;
+}
+
+.submit--btn:hover {
+    color: lightgray;
 }
 
 .general--right > div {

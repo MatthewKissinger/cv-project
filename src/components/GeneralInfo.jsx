@@ -5,34 +5,45 @@ class GeneralInfo extends React.Component {
     
     render() {
         
-        const { userName, userTitle, userPhone, userEmail, userStreet, userCity, toggleEdit } = this.props;
+        const { userName, userTitle, userPhone, userEmail, userStreet, userCity, handleChange, toggleEdit } = this.props;
         
         return (
             <div className='general--container'>
                 <div className='general--left'>
                     {userName.editMode 
-                        ? <input
+                        ? <div
+                            className='general--name info'
+                            >
+                            <input
+                            data-name='name'
+                            onChange={handleChange}
                             value={userName.text}
                             // add onChange handler 
                             className='input--name'
                             >
-
                             </input>
-                        :<h1
+                            <span
+                                data-name='name'
+                                className='material-icons submit--btn'>
+                                    done
+                            </span>
+                        </div>     
+                        : <div
                             className='general--name info'>
-                            {userName.text}
+                            <h1>{userName.text}</h1>
                             <span 
                                 className='material-icons edit--btn'
                                 onClick={toggleEdit}
                                 id='name'>
                                 mode_edit
                             </span>
-                        </h1>    
+                          </div>    
                     } 
                     <h3 
                         onClick={toggleEdit}
                         className='general--title info'
-                    >   {userTitle}
+                    >   
+                        {userTitle}
                          <span 
                             className='material-icons edit--btn'
                             onClick={toggleEdit}
