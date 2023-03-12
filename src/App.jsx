@@ -19,10 +19,22 @@ class App extends React.Component {
         text: 'Web Developer',
         editMode: false
       },
-      phone: '555.867.5309',
-      email: 'joe.schmoe@gmail.com',
-      addressStreet: '1234 Sesame St.',
-      addressCity: 'New York City, NY 10001'
+      phone: {
+        text: '555.867.5309',
+        editMode: false
+      },
+      email: {
+        text: 'joe.schmoe@gmail.com',
+        editMode: false
+      },
+      addressStreet: {
+        text: '1234 Sesame St.',
+        editMode: false
+      },
+      addressCity: {
+        text: 'New York City, NY 10001',
+        editMode: false
+      }
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -33,6 +45,7 @@ class App extends React.Component {
   handleChange(e) {
     const { value } = e.target;
     const name = e.target.dataset.name;
+    
 
     this.setState({
       ...this.state,
@@ -44,13 +57,13 @@ class App extends React.Component {
   }
 
   toggleEdit(e) {
-    const { id } = e.target;
+    const name = e.target.dataset.name;
 
     this.setState({
       ...this.state,
-      [id]: {
-        ...this.state[id],
-        editMode: !this.state[id].editMode
+      [name]: {
+        ...this.state[name],
+        editMode: !this.state[name].editMode
     }
     })
   }
