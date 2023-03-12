@@ -1,6 +1,8 @@
 import React from 'react';
 import '../styles/generalInfo.css'
 
+// make the conditional rendering happen in a single function passing those parameters? 
+
 class GeneralInfo extends React.Component {
     
     render() {

@@ -1,10 +1,11 @@
 import React from 'react'
 import Header from './components/Header'
 import GeneralInfo from './components/GeneralInfo'
+import About from './components/About'
+import WorkHistory from './components/WorkHistory'
 import './styles/app.css'
 
 // create a state object for all resume items
-// hook up state objects with the right side of the generalInfo component
 
 class App extends React.Component {
   constructor(props) {
@@ -34,7 +35,25 @@ class App extends React.Component {
       addressCity: {
         text: 'New York City, NY 10001',
         editMode: false
-      }
+      },
+      about: {
+        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Urna duis convallis convallis tellus id interdum velit laoreet id. In massa tempor nec feugiat nisl. Faucibus in ornare quam viverra orci. Nibh praesent tristique magna sit amet. Fermentum odio eu feugiat pretium nibh. Et odio pellentesque diam volutpat commodo sed egestas egestas. Laoreet suspendisse interdum consectetur libero id faucibus nisl tincidunt eget. Orci nulla pellentesque dignissim enim sit. Massa tempor nec feugiat nisl. Molestie at elementum eu facilisis sed odio.',
+        editMode: false
+      },
+      workHistory: [
+        {
+          title: 'Manager',
+          company: '2nd Company',
+          dateRange: '2023 - Present',
+          details: 'Ut fugiat minim qui voluptate culpa. Elit nostrud ex ad incididunt incididunt eiusmod. Officia cupidatat culpa commodo nisi nostrud.'
+        }, 
+        {
+          title: 'Production Lead',
+          company: 'First Company',
+          dateRange: '2019 - 2023',
+          details: 'Irure dolor incididunt sint et ullamco. Commodo laboris amet aliquip incididunt do ut est exercitation reprehenderit magna sit laboris est mollit.'
+        }
+      ]
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -83,7 +102,7 @@ class App extends React.Component {
   
   render() {
 
-    const { name, title, phone, email, addressStreet, addressCity } = this.state;
+    const { name, title, phone, email, addressStreet, addressCity, about } = this.state;
 
     return (
       <div className="App">
@@ -100,6 +119,13 @@ class App extends React.Component {
             userStreet={addressStreet}
             userCity={addressCity}
           />
+          <About 
+            about={about}
+            handleChange={this.handleChange}
+            toggleEdit={this.toggleEdit}
+            toggleSubmit={this.toggleSubmit}
+          />
+          <WorkHistory />
         </div>
       </div>
     )
