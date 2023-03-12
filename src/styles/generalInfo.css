@@ -1,5 +1,4 @@
 .general--container {
-    /* border: 1px solid red; */
     display: flex;
     height: 11rem;
     justify-content: space-between;
@@ -9,14 +8,11 @@
 
 .general--name {
     display: flex;
-    justify-content: space-between;
     height: 74px;
-    width: 340px;
-    border: 1px solid red;
 }
 
 .general--name > h1 {
-    font-size: 3rem;
+    font-size: 2.75rem;
 }
 
 .general--title {

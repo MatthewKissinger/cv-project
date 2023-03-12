@@ -4,6 +4,7 @@ import GeneralInfo from './components/GeneralInfo'
 import './styles/app.css'
 
 // create a state object for all resume items
+// hook up state objects with the right side of the generalInfo component
 
 class App extends React.Component {
   constructor(props) {
@@ -14,7 +15,10 @@ class App extends React.Component {
         text: 'Joe Schmoe',
         editMode: false
       },
-      title: 'Web Developer',
+      title: {
+        text: 'Web Developer',
+        editMode: false
+      },
       phone: '555.867.5309',
       email: 'joe.schmoe@gmail.com',
       addressStreet: '1234 Sesame St.',
@@ -40,7 +44,6 @@ class App extends React.Component {
   }
 
   toggleEdit(e) {
-    
     const { id } = e.target;
 
     this.setState({
@@ -53,7 +56,16 @@ class App extends React.Component {
   }
 
   toggleSubmit(e) {
+    const name = e.target.dataset.name;
 
+    this.setState({
+      ...this.state,
+      [name]: {
+        ...this.state[name],
+        editMode: !this.state[name].editMode
+      }
+    })
+    
   }  
   
   render() {
