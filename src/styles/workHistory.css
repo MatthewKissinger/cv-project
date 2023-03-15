@@ -1,0 +1,60 @@
+.workHistory--container {
+    /* border: 1px solid red; */
+    margin-top: .8rem;
+    display: grid;
+    grid-template-columns: 1fr 3.25fr .75fr .1fr;
+    justify-items: start;
+    gap: .5rem;
+}
+
+.workHistory--title > h3 {
+    font-weight: 500;
+}
+
+.workHistory--company, .workHistory--dateRange {
+    justify-self: end;
+    align-self: center;
+    font-weight: 700;
+    font-size: .8rem;
+}
+
+.workHistory--company {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid red; */
+}
+
+.workHistory--company > h4 {
+    font-weight: 300;
+    font-size: .9rem;
+}
+
+.verticalBreak {
+    font-weight: 300;
+    font-size: 1.25rem;
+    margin-left: .5rem;
+}
+
+.workHistory--details {
+    grid-column: 1 / 4;
+    font-weight: 300;
+}
+
+.workHistory--edit--btn {
+    visibility: hidden;
+    margin-left: .5rem;
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: .1rem;
+    right: -2rem;
+}
+
+.workHistory--edit--btn:hover {
+    color: lightgray;
+}
+
+.info:hover > .workHistory--edit--btn {
+    visibility: visible;
+}

@@ -45,13 +45,15 @@ class App extends React.Component {
           title: 'Manager',
           company: '2nd Company',
           dateRange: '2023 - Present',
-          details: 'Ut fugiat minim qui voluptate culpa. Elit nostrud ex ad incididunt incididunt eiusmod. Officia cupidatat culpa commodo nisi nostrud.'
+          details: 'Ut fugiat minim qui voluptate culpa. Elit nostrud ex ad incididunt incididunt eiusmod. Officia cupidatat culpa commodo nisi nostrud. Irure dolor incididunt sint et ullamco.',
+          editMode: false
         }, 
         {
           title: 'Production Lead',
           company: 'First Company',
           dateRange: '2019 - 2023',
-          details: 'Irure dolor incididunt sint et ullamco. Commodo laboris amet aliquip incididunt do ut est exercitation reprehenderit magna sit laboris est mollit.'
+          details: 'Irure dolor incididunt sint et ullamco. Commodo laboris amet aliquip incididunt do ut est exercitation reprehenderit magna sit laboris est mollit.',
+          editMode: false
         }
       ]
     }
@@ -78,6 +80,19 @@ class App extends React.Component {
   toggleEdit(e) {
     const name = e.target.dataset.name;
 
+    // update editMode for workHistory object in an array
+    if (name === 'workHistory') {
+      
+      console.log(this.state[name]);
+      this.setState({
+        ...this.state,
+        [name] : [
+          ...this.state,
+
+        ]
+      })
+    }
+
     this.setState({
       ...this.state,
       [name]: {
@@ -102,7 +117,7 @@ class App extends React.Component {
   
   render() {
 
-    const { name, title, phone, email, addressStreet, addressCity, about } = this.state;
+    const { name, title, phone, email, addressStreet, addressCity, about, workHistory } = this.state;
 
     return (
       <div className="App">
@@ -125,7 +140,15 @@ class App extends React.Component {
             toggleEdit={this.toggleEdit}
             toggleSubmit={this.toggleSubmit}
           />
-          <WorkHistory />
+          <h2 className='workHistory'>WORK HISTORY</h2>
+          <div className='workHistory--list'> 
+            <WorkHistory 
+              workHistory={workHistory}
+              handleChange={this.handleChange}
+              toggleEdit={this.toggleEdit}
+              toggleSubmit={this.toggleSubmit}
+            />
+          </div>
         </div>
       </div>
     )

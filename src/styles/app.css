@@ -18,3 +18,9 @@ html, body, #root {
     margin-top: 2rem;
     padding: 1.5rem 3rem;
 }
+
+.workHistory {
+    margin-top: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+}
