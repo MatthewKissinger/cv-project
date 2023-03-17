@@ -42,6 +42,7 @@ class App extends React.Component {
       },
       workHistory: [
         {
+          id: '0',
           title: 'Manager',
           company: '2nd Company',
           dateRange: '2023 - Present',
@@ -49,6 +50,7 @@ class App extends React.Component {
           editMode: false
         }, 
         {
+          id: 1,
           title: 'Production Lead',
           company: 'First Company',
           dateRange: '2019 - 2023',
@@ -67,7 +69,6 @@ class App extends React.Component {
     const { value } = e.target;
     const name = e.target.dataset.name;
     
-
     this.setState({
       ...this.state,
       [name]: {
@@ -79,27 +80,35 @@ class App extends React.Component {
 
   toggleEdit(e) {
     const name = e.target.dataset.name;
+    console.log(this.state.workHistory);
 
     // update editMode for workHistory object in an array
     if (name === 'workHistory') {
+
+      const { workHistory } = this.state;
+
+      const newWorkHistory = workHistory.map(item => {
+        if (item.id === e.target.id) {
+
+          return {...item, editMode: !item.editMode}
+        } else {
+          return item;
+        }
+      });
       
-      console.log(this.state[name]);
       this.setState({
         ...this.state,
-        [name] : [
-          ...this.state,
-
-        ]
+        workHistory : newWorkHistory
+      })
+    } else {
+      this.setState({
+        ...this.state,
+        [name]: {
+          ...this.state[name],
+          editMode: !this.state[name].editMode
+      }
       })
     }
-
-    this.setState({
-      ...this.state,
-      [name]: {
-        ...this.state[name],
-        editMode: !this.state[name].editMode
-    }
-    })
   }
 
   toggleSubmit(e) {

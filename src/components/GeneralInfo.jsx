@@ -17,10 +17,10 @@ class GeneralInfo extends React.Component {
                             className='general--name info'
                             >
                             <input
-                            data-name='name'
-                            onChange={handleChange}
-                            value={userName.text}
-                            className='input--name'
+                                data-name='name'
+                                onChange={handleChange}
+                                value={userName.text}
+                                className='input--name'
                             >
                             </input>
                             <span
@@ -44,10 +44,10 @@ class GeneralInfo extends React.Component {
                     {userTitle.editMode 
                         ? <div>
                             <input
-                            data-name='title'
-                            onChange={handleChange}
-                            value={userTitle.text}
-                            className='input--title'
+                                data-name='title'
+                                onChange={handleChange}
+                                value={userTitle.text}
+                                className='input--title'
                             >
                             </input>
                             <span

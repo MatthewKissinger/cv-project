@@ -58,3 +58,12 @@
 .info:hover > .workHistory--edit--btn {
     visibility: visible;
 }
+
+.workHistory--inputs > label {
+    font-size: .75rem;
+}
+
+.input--container {
+    display: flex;
+    flex-direction: column;
+}
