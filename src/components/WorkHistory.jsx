@@ -13,14 +13,15 @@ class WorkHistory extends React.Component {
                 {workHistory[0].editMode 
                 ?   <div className='workHistory--inputs'>
                         <div className='input--container'>
-                            <label htmlFor='title'>
+                            <label htmlFor='jobTitle'>
                                 Job Title
                             </label>
                             <input
-                                id='title'
+                                data-name='jobTitle'
+                                id={workHistory[0].id}
                                 // make a separate handleChange function for workHistory
-                                // onChange={handleChange}
-                                // value={userName.text}
+                                onChange={handleChange}
+                                value={workHistory[0].jobTitle}
                             >
                             </input>
                         </div>
@@ -29,10 +30,11 @@ class WorkHistory extends React.Component {
                                 Company Name
                             </label>
                             <input
-                                id='company'
+                                data-name='company'
+                                id={workHistory[0].id}
                                 // make a separate handleChange function for workHistory
-                                // onChange={handleChange}
-                                // value={userName.text}
+                                onChange={handleChange}
+                                value={workHistory[0].company}
                             >
                             </input>
                         </div>
@@ -41,10 +43,11 @@ class WorkHistory extends React.Component {
                                 Date Range
                             </label>
                             <input
-                                id='dateRange'
+                                data-name='dateRange'
+                                id={workHistory[0].id}
                                 // make a separate handleChange function for workHistory
-                                // onChange={handleChange}
-                                // value={userName.text}
+                                onChange={handleChange}
+                                value={workHistory[0].dateRange}
                             >
                             </input>
                         </div>
@@ -53,11 +56,15 @@ class WorkHistory extends React.Component {
                                 Job Details
                             </label>
                             <textarea
-                                id='details'
+                                data-name='details'
+                                id={workHistory[0].id}
+                                onChange={handleChange}
+                                value={workHistory[0].details}
                             />
                         </div>
                         <span
-                            // data-name='title'
+                            data-name='workHistory'
+                            id={workHistory[0].id}
                             className='material-icons submit--btn submit--workHistory'
                             onClick={toggleSubmit}>
                             done
@@ -66,7 +73,7 @@ class WorkHistory extends React.Component {
                 :   <div className='workHistory--container info'>
                         <div className='workHistory--title'>
                             <h3>
-                                {workHistory[0].title}
+                                {workHistory[0].jobTitle}
                             </h3>
                         </div>
                         <div className='workHistory--company'>

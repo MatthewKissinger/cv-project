@@ -5,7 +5,8 @@ import About from './components/About'
 import WorkHistory from './components/WorkHistory'
 import './styles/app.css'
 
-// create a state object for all resume items
+// complete new handleChange function for WorkHistory inputs
+// add buttons to add new workHistory or delete workHistory array items
 
 class App extends React.Component {
   constructor(props) {
@@ -43,14 +44,14 @@ class App extends React.Component {
       workHistory: [
         {
           id: '0',
-          title: 'Manager',
+          jobTitle: 'Manager',
           company: '2nd Company',
           dateRange: '2023 - Present',
           details: 'Ut fugiat minim qui voluptate culpa. Elit nostrud ex ad incididunt incididunt eiusmod. Officia cupidatat culpa commodo nisi nostrud. Irure dolor incididunt sint et ullamco.',
           editMode: false
         }, 
         {
-          id: 1,
+          id: '1',
           title: 'Production Lead',
           company: 'First Company',
           dateRange: '2019 - 2023',
@@ -80,7 +81,6 @@ class App extends React.Component {
 
   toggleEdit(e) {
     const name = e.target.dataset.name;
-    console.log(this.state.workHistory);
 
     // update editMode for workHistory object in an array
     if (name === 'workHistory') {
@@ -89,7 +89,6 @@ class App extends React.Component {
 
       const newWorkHistory = workHistory.map(item => {
         if (item.id === e.target.id) {
-
           return {...item, editMode: !item.editMode}
         } else {
           return item;
@@ -114,14 +113,31 @@ class App extends React.Component {
   toggleSubmit(e) {
     const name = e.target.dataset.name;
 
-    this.setState({
-      ...this.state,
-      [name]: {
-        ...this.state[name],
-        editMode: !this.state[name].editMode
+    if (name === 'workHistory') {
+
+      const { workHistory } = this.state;
+
+      const newWorkHistory = workHistory.map(item => {
+        if (item.id === e.target.id) {
+          return {...item, editMode: !item.editMode}
+        } else {
+          return item;
+        }
+      });
+      
+      this.setState({
+        ...this.state,
+        workHistory : newWorkHistory
+      })
+    } else {
+      this.setState({
+        ...this.state,
+        [name]: {
+          ...this.state[name],
+          editMode: !this.state[name].editMode
       }
-    })
-    
+      })
+    }
   }  
   
   render() {
