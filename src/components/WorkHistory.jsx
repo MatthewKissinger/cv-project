@@ -36,26 +36,29 @@ class WorkHistory extends React.Component {
                             >
                             </input>
                         </div>
-                        
-                        <label htmlFor='dateRange'>
-                            Date Range
-                        </label>
-                        <input
-                            id='dateRange'
-                            // make a separate handleChange function for workHistory
-                            // onChange={handleChange}
-                            // value={userName.text}
-                        >
-                        </input>
-                        <label htmlFor='details'>
-                            Job Details
-                        </label>
-                        <textarea
-                            id='details'
-                        />
+                        <div className='input--container'>
+                            <label htmlFor='dateRange'>
+                                Date Range
+                            </label>
+                            <input
+                                id='dateRange'
+                                // make a separate handleChange function for workHistory
+                                // onChange={handleChange}
+                                // value={userName.text}
+                            >
+                            </input>
+                        </div>
+                        <div className='input--container input--workHistory-details'>
+                            <label htmlFor='details'>
+                                Job Details
+                            </label>
+                            <textarea
+                                id='details'
+                            />
+                        </div>
                         <span
                             // data-name='title'
-                            className='material-icons submit--btn'
+                            className='material-icons submit--btn submit--workHistory'
                             onClick={toggleSubmit}>
                             done
                         </span>
