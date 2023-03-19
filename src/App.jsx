@@ -5,7 +5,7 @@ import About from './components/About'
 import WorkHistory from './components/WorkHistory'
 import './styles/app.css'
 
-// complete new handleChange function for WorkHistory inputs
+// map through the workHistory array in state to create multiple workHistory objects if present in the array
 // add buttons to add new workHistory or delete workHistory array items
 
 class App extends React.Component {
@@ -52,7 +52,7 @@ class App extends React.Component {
         }, 
         {
           id: '1',
-          title: 'Production Lead',
+          jobTitle: 'Production Lead',
           company: 'First Company',
           dateRange: '2019 - 2023',
           details: 'Irure dolor incididunt sint et ullamco. Commodo laboris amet aliquip incididunt do ut est exercitation reprehenderit magna sit laboris est mollit.',
@@ -62,6 +62,7 @@ class App extends React.Component {
     }
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleWorkChange = this.handleWorkChange.bind(this);
     this.toggleEdit = this.toggleEdit.bind(this);
     this.toggleSubmit = this.toggleSubmit.bind(this);
   }
@@ -77,6 +78,26 @@ class App extends React.Component {
         text: value
       }
     })
+  }
+
+  handleWorkChange(e) {
+    const { value } = e.target;
+    const name = e.target.dataset.name;
+    const { workHistory } = this.state;
+
+    const newWorkHistory = workHistory.map(item => {
+      if (item.id === e.target.id) {
+        return {...item, [name]: value}
+      } else {
+        return item;
+      }
+    })
+
+    this.setState({
+      ...this.state,
+      workHistory : newWorkHistory
+    })
+
   }
 
   toggleEdit(e) {
@@ -144,6 +165,19 @@ class App extends React.Component {
 
     const { name, title, phone, email, addressStreet, addressCity, about, workHistory } = this.state;
 
+    // mapping over the workHistory array 
+    const workHistoryCards = this.state.workHistory.map(item => {
+      return (
+        <WorkHistory
+          key={item.id}
+          {...item}
+          handleWorkChange={this.handleWorkChange}
+          toggleEdit={this.toggleEdit}
+          toggleSubmit={this.toggleSubmit}
+        />
+      )
+    })
+
     return (
       <div className="App">
         <Header />
@@ -167,12 +201,7 @@ class App extends React.Component {
           />
           <h2 className='workHistory'>WORK HISTORY</h2>
           <div className='workHistory--list'> 
-            <WorkHistory 
-              workHistory={workHistory}
-              handleChange={this.handleChange}
-              toggleEdit={this.toggleEdit}
-              toggleSubmit={this.toggleSubmit}
-            />
+            {workHistoryCards}
           </div>
         </div>
       </div>

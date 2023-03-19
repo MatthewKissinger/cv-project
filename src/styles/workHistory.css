@@ -2,7 +2,7 @@
     /* border: 1px solid red; */
     margin-top: .8rem;
     display: grid;
-    grid-template-columns: 1fr 3.25fr .75fr .1fr;
+    grid-template-columns: 1.5fr 3fr 1fr .1fr;
     justify-items: start;
     gap: .5rem;
 }
@@ -16,6 +16,10 @@
     align-self: center;
     font-weight: 700;
     font-size: .8rem;
+}
+
+.workHistory--dateRange {
+    justify-self: center;
 }
 
 .workHistory--company {
@@ -33,7 +37,7 @@
 .verticalBreak {
     font-weight: 300;
     font-size: 1.25rem;
-    margin-left: .5rem;
+    margin-left: 1.5rem;
 }
 
 .workHistory--details {
