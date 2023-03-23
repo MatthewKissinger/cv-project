@@ -1,8 +1,8 @@
 .education--container {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     margin-top: .8rem;
     display: grid;
-    grid-template-columns: 3.5fr 2fr 1.5fr;
+    grid-template-columns: 2fr 3fr 1fr .1fr;
     justify-items: start;
     align-items: center;
     gap: .5rem;
@@ -10,6 +10,7 @@
 
 .education--certification > h3 {
     font-weight: 500;
+    font-size: 1rem;
 }
 
 .education--school, .education--dateRange {
@@ -25,7 +26,7 @@
 }
 
 .education--dateRange {
-    justify-self: center;
+    justify-self: start;
 }
 
 .education--certificaction {
@@ -72,7 +73,7 @@
     /* border: 1px solid red; */
     margin-top: .8rem;
     display: grid;
-    grid-template-columns: 50% 35% 15%;
+    grid-template-columns: 40% 26.25% 26.25% 7.5%;
     justify-items: start;
     gap: .3rem;
 }
@@ -93,7 +94,7 @@
 }
 
 .submit--education {
-    grid-column: 3 / 4;
+    grid-column: 4 / 5;
     display: flex;
     align-items: center;
     justify-content: center;

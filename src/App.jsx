@@ -7,6 +7,9 @@ import Education from './components/Education'
 import './styles/app.css'
 
 // add buttons to add or delete workHistory array items
+// on hover over .section--workHistory & --education ->
+//  display an add button that pushes an empty object (with filler text) to the 
+//  appropriate array
 
 class App extends React.Component {
   constructor(props) {
@@ -79,6 +82,7 @@ class App extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleWorkChange = this.handleWorkChange.bind(this);
+    this.handleEducationChange = this.handleEducationChange.bind(this);
     this.toggleEdit = this.toggleEdit.bind(this);
     this.toggleSubmit = this.toggleSubmit.bind(this);
   }
@@ -139,7 +143,6 @@ class App extends React.Component {
   toggleEdit(e) {
     const name = e.target.dataset.name;
 
-    // update editMode for workHistory object in an array
     if (name === 'workHistory') {
 
       const { workHistory } = this.state;
@@ -155,6 +158,22 @@ class App extends React.Component {
       this.setState({
         ...this.state,
         workHistory : newWorkHistory
+      })
+    } else if (name === 'education') {
+
+      const { education } = this.state;
+
+      const newEducation = education.map(item => {
+        if (item.id === e.target.id) {
+          return {...item, editMode: !item.editMode}
+        } else {
+          return item;
+        }
+      });
+      
+      this.setState({
+        ...this.state,
+        education : newEducation
       })
     } else {
       this.setState({
@@ -185,6 +204,21 @@ class App extends React.Component {
       this.setState({
         ...this.state,
         workHistory : newWorkHistory
+      })
+    } else if (name === 'education') {
+      const { education } = this.state;
+
+      const newEducation = education.map(item => {
+        if (item.id === e.target.id) {
+          return {...item, editMode: !item.editMode}
+        } else {
+          return item;
+        }
+      });
+      
+      this.setState({
+        ...this.state,
+        education : newEducation
       })
     } else {
       this.setState({
@@ -248,11 +282,11 @@ class App extends React.Component {
             toggleEdit={this.toggleEdit}
             toggleSubmit={this.toggleSubmit}
           />
-          <h2 className='section--title'>WORK HISTORY</h2>
+          <h2 className='section--workHistory'>WORK HISTORY</h2>
           <div className='workHistory--list'> 
             {workHistoryCards}
           </div>
-          <h2 className='section--title'>EDUCATION</h2>
+          <h2 className='section--education'>EDUCATION</h2>
           <div className='education--list'>
             {educationCards}
           </div>
