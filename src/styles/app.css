@@ -19,7 +19,7 @@ html, body, #root {
     padding: 1.5rem 3rem;
 }
 
-.workHistory {
+.section--title {
     margin-top: 1.5rem;
     font-weight: 500;
     letter-spacing: 2px;

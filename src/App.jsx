@@ -3,10 +3,10 @@ import Header from './components/Header'
 import GeneralInfo from './components/GeneralInfo'
 import About from './components/About'
 import WorkHistory from './components/WorkHistory'
+import Education from './components/Education'
 import './styles/app.css'
 
-// map through the workHistory array in state to create multiple workHistory objects if present in the array
-// add buttons to add new workHistory or delete workHistory array items
+// add buttons to add or delete workHistory array items
 
 class App extends React.Component {
   constructor(props) {
@@ -58,6 +58,22 @@ class App extends React.Component {
           details: 'Irure dolor incididunt sint et ullamco. Commodo laboris amet aliquip incididunt do ut est exercitation reprehenderit magna sit laboris est mollit.',
           editMode: false
         }
+      ],
+      education: [
+        {
+          id: '0',
+          certification: 'Fullstack Javascript',
+          school: 'The Odin Project',
+          dateRange: '2020 - Present',
+          editMode: false
+        },
+        {
+          id: '1',
+          certification: 'Bachelors of Arts',
+          school: 'Columbia Chicago',
+          dateRange: '2011 - 2014',
+          editMode: false
+        }
       ]
     }
 
@@ -99,6 +115,26 @@ class App extends React.Component {
     })
 
   }
+
+  handleEducationChange(e) {
+    const { value } = e.target;
+    const name = e.target.dataset.name;
+    const { education } = this.state;
+
+    const newEducation = education.map(item => {
+      if (item.id === e.target.id) {
+        return {...item, [name]: value}
+      } else {
+        return item;
+      }
+    })
+
+    this.setState({
+      ...this.state,
+      education : newEducation
+    })
+  }
+
 
   toggleEdit(e) {
     const name = e.target.dataset.name;
@@ -165,13 +201,26 @@ class App extends React.Component {
 
     const { name, title, phone, email, addressStreet, addressCity, about, workHistory } = this.state;
 
-    // mapping over the workHistory array 
+    // mapping over workHistory array 
     const workHistoryCards = this.state.workHistory.map(item => {
       return (
         <WorkHistory
           key={item.id}
           {...item}
           handleWorkChange={this.handleWorkChange}
+          toggleEdit={this.toggleEdit}
+          toggleSubmit={this.toggleSubmit}
+        />
+      )
+    })
+
+    // mapping over education array
+    const educationCards = this.state.education.map(item => {
+      return (
+        <Education 
+          key={item.id}
+          {...item}
+          handleEducationChange={this.handleEducationChange}
           toggleEdit={this.toggleEdit}
           toggleSubmit={this.toggleSubmit}
         />
@@ -199,9 +248,13 @@ class App extends React.Component {
             toggleEdit={this.toggleEdit}
             toggleSubmit={this.toggleSubmit}
           />
-          <h2 className='workHistory'>WORK HISTORY</h2>
+          <h2 className='section--title'>WORK HISTORY</h2>
           <div className='workHistory--list'> 
             {workHistoryCards}
+          </div>
+          <h2 className='section--title'>EDUCATION</h2>
+          <div className='education--list'>
+            {educationCards}
           </div>
         </div>
       </div>

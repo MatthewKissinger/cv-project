@@ -1,8 +1,6 @@
 import React from 'react'
 import '../styles/workHistory.css'
 
-// style a placeholder WorkHistory Card with state
-
 class WorkHistory extends React.Component {
 
     render() {
