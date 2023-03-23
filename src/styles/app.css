@@ -19,8 +19,35 @@ html, body, #root {
     padding: 1.5rem 3rem;
 }
 
-.section--workHistory, .section--education {
+.section--workHistory--wrapper, .section--education--wrapper {
+    /* border: 1px solid green; */
+    display: flex;
+    align-items: center;
+    gap: 2rem;
     margin-top: 1.5rem;
+}
+
+.workHistory--title, .education--title {
     font-weight: 500;
     letter-spacing: 2px;
+}
+
+.workHistory--add--btn, .education--add--btn {
+    visibility: hidden;
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: .1rem;
+}
+
+.workHistory--add--btn:hover, .education--add--btn:hover {
+    color: lightgray;
+}
+
+.section--workHistory--wrapper:hover > .workHistory--add--btn {
+    visibility: visible;
+}
+
+.section--education--wrapper:hover > .education--add--btn {
+    visibility: visible;
 }

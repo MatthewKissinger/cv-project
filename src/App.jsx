@@ -10,6 +10,7 @@ import './styles/app.css'
 // on hover over .section--workHistory & --education ->
 //  display an add button that pushes an empty object (with filler text) to the 
 //  appropriate array
+// display delete button when in edit mode for each array item
 
 class App extends React.Component {
   constructor(props) {
@@ -79,12 +80,13 @@ class App extends React.Component {
         }
       ]
     }
-
     this.handleChange = this.handleChange.bind(this);
     this.handleWorkChange = this.handleWorkChange.bind(this);
     this.handleEducationChange = this.handleEducationChange.bind(this);
     this.toggleEdit = this.toggleEdit.bind(this);
     this.toggleSubmit = this.toggleSubmit.bind(this);
+    this.addEducation = this.addEducation.bind(this);
+    this.addWorkHistory = this.addWorkHistory.bind(this);
   }
 
   handleChange(e) {
@@ -138,7 +140,6 @@ class App extends React.Component {
       education : newEducation
     })
   }
-
 
   toggleEdit(e) {
     const name = e.target.dataset.name;
@@ -230,12 +231,21 @@ class App extends React.Component {
       })
     }
   }  
-  
+
+  addWorkHistory(e) {
+    console.log('add some work history');
+
+    // map a new array from the previous workHistory and add in an empty object by adjusting state
+  }
+
+  addEducation(e) {
+    console.log('add some education!');
+  }
+
   render() {
 
-    const { name, title, phone, email, addressStreet, addressCity, about, workHistory } = this.state;
+    const { name, title, phone, email, addressStreet, addressCity, about } = this.state;
 
-    // mapping over workHistory array 
     const workHistoryCards = this.state.workHistory.map(item => {
       return (
         <WorkHistory
@@ -282,11 +292,29 @@ class App extends React.Component {
             toggleEdit={this.toggleEdit}
             toggleSubmit={this.toggleSubmit}
           />
-          <h2 className='section--workHistory'>WORK HISTORY</h2>
+          <div className='section--workHistory--wrapper'>  
+            <h2 className='workHistory--title'>WORK HISTORY</h2>
+            <span
+                data-name='add-workHistory'
+                className='material-icons add--btn workHistory--add--btn'
+                onClick={this.addWorkHistory}
+            >
+              add
+            </span>
+          </div>
           <div className='workHistory--list'> 
             {workHistoryCards}
           </div>
-          <h2 className='section--education'>EDUCATION</h2>
+          <div className='section--education--wrapper'>
+            <h2 className='education--title'>EDUCATION</h2>
+            <span
+                data-name='add-education'
+                className='material-icons add--btn education--add--btn'
+                onClick={this.addEducation}
+            >
+              add
+            </span>
+          </div>
           <div className='education--list'>
             {educationCards}
           </div>
