@@ -4,7 +4,7 @@ import '../styles/education.css'
 class Education extends React.Component {
 
     render () {
-        const { id, certification, school, dateRange, editMode, handleEducationChange, toggleEdit, toggleSubmit} = this.props;
+        const { id, certification, school, dateRange, editMode, handleEducationChange, toggleEdit, toggleSubmit, toggleDelete} = this.props;
 
         return (
             <div>
@@ -46,13 +46,22 @@ class Education extends React.Component {
                             >
                             </input>
                         </div>
-                        <span
-                            data-name='education'
-                            id={id}
-                            className='material-icons submit--btn submit--education'
-                            onClick={toggleSubmit}>
-                            done
-                        </span>
+                        <div className='input--btn--container'>
+                            <span
+                                data-name='education'
+                                id={id}
+                                className='material-icons submit--btn submit--education'
+                                onClick={toggleSubmit}>
+                                done
+                            </span>
+                            <span
+                                data-name='education'
+                                id={id}
+                                className='material-icons delete--btn delete--education'
+                                onClick={toggleDelete}>
+                                delete
+                            </span>
+                        </div>
                     </div>
                 :   <div className='education--container info'>
                         <div className='education--certification'>

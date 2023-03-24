@@ -6,11 +6,11 @@ import WorkHistory from './components/WorkHistory'
 import Education from './components/Education'
 import './styles/app.css'
 
-// add buttons to add or delete workHistory array items
-// on hover over .section--workHistory & --education ->
-//  display an add button that pushes an empty object (with filler text) to the 
-//  appropriate array
+// add delete button that removes the array item from the appropriate array
 // display delete button when in edit mode for each array item
+// DONE for education --> update WorkHistory to function with delete button
+
+// figure out a new way to create unique ids for added array items
 
 class App extends React.Component {
   constructor(props) {
@@ -87,6 +87,7 @@ class App extends React.Component {
     this.toggleSubmit = this.toggleSubmit.bind(this);
     this.addEducation = this.addEducation.bind(this);
     this.addWorkHistory = this.addWorkHistory.bind(this);
+    this.toggleDelete = this.toggleDelete.bind(this);
   }
 
   handleChange(e) {
@@ -232,14 +233,59 @@ class App extends React.Component {
     }
   }  
 
-  addWorkHistory(e) {
-    console.log('add some work history');
+  toggleDelete(e) {
+    const name = e.target.dataset.name;
+    const id = e.target.id;
 
-    // map a new array from the previous workHistory and add in an empty object by adjusting state
+    console.log(this.state[name]);
+    const newArray = this.state[name].filter(item => {
+      if (id !== item.id) {
+        return item;
+      }
+    })
+    
+    this.setState({
+      ...this.state,
+      [name]: newArray
+    })
   }
 
-  addEducation(e) {
-    console.log('add some education!');
+  addWorkHistory() {
+  
+    const newWorkHistoryArr = [
+      ...this.state.workHistory,
+      {
+        id: `${this.state.workHistory.length}`,
+        jobTitle: 'Worker',
+        company: 'Company Name',
+        dateRange: '2023 - Present',
+        details: 'Ut fugiat minim qui voluptate culpa. Elit nostrud ex ad incididunt incididunt eiusmod. Officia cupidatat culpa commodo nisi nostrud. Irure dolor incididunt sint et ullamco.',
+        editMode: false
+      }
+    ];
+
+    this.setState({
+      ...this.state,
+      workHistory: newWorkHistoryArr
+    })
+  }
+
+  addEducation() {
+    const newEducationArr = [
+      ...this.state.education,
+      {
+        id: `${this.state.education.length}`,
+        certification: 'Bachelors Degree',
+        school: 'Sky Academy',
+        dateRange: '2020 - Present',
+        editMode: false
+      }
+    ];
+
+    this.setState({
+      ...this.state,
+      education: newEducationArr
+    })
   }
 
   render() {
@@ -267,6 +313,7 @@ class App extends React.Component {
           handleEducationChange={this.handleEducationChange}
           toggleEdit={this.toggleEdit}
           toggleSubmit={this.toggleSubmit}
+          toggleDelete={this.toggleDelete}
         />
       )
     })

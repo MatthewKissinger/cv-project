@@ -93,6 +93,11 @@
     font-size: .75rem;
 }
 
+.input--btn--container {
+    grid-column: 4 / 5;
+    display: flex;
+}
+
 .submit--education {
     grid-column: 4 / 5;
     display: flex;
@@ -101,4 +106,19 @@
     height: 1.5rem;
     justify-self: center;
     align-self: center;
+}
+
+.delete--btn {
+    cursor: pointer;
+    margin-left: .5rem;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: .1rem;
+    height: 1.5rem;
+    justify-self: center;
+    align-self: center;
+}
+
+.delete--btn:hover {
+    color: lightgray;
 }
