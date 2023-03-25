@@ -1,5 +1,4 @@
 .workHistory--container {
-    /* border: 1px solid red; */
     margin-top: .8rem;
     display: grid;
     grid-template-columns: 2fr 3fr 1fr .1fr;
@@ -8,12 +7,10 @@
 }
 
 .workHistory--title > h3 {
-    /* border: 1px solid blue; */
     font-weight: 500;
 }
 
 .workHistory--company, .workHistory--dateRange {
-    /* border: 1px solid blue; */
     justify-self: end;
     align-self: center;
     font-weight: 700;
@@ -28,7 +25,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* border: 1px solid red; */
 }
 
 .workHistory--company > h4 {
@@ -71,7 +67,6 @@
 }
 
 .workHistory--inputs {
-    /* border: 1px solid red; */
     margin-top: .8rem;
     display: grid;
     grid-template-columns: 50% 35% 15%;
@@ -80,7 +75,6 @@
 }
 
 .input--container {
-    /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -104,11 +98,15 @@ textarea {
 }
 
 .submit--workHistory {
-    grid-column: 3 / 4;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 1.5rem;
     justify-self: center;
     align-self: center;
+}
+
+.workHistory--btn--container {
+    grid-column: 3 / 4;
+    display: flex;
 }

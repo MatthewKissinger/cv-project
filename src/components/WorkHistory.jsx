@@ -5,7 +5,7 @@ class WorkHistory extends React.Component {
 
     render() {
 
-        const { id, jobTitle, company, dateRange, details, editMode, handleWorkChange, toggleEdit, toggleSubmit} = this.props;
+        const { id, jobTitle, company, dateRange, details, editMode, handleWorkChange, toggleEdit, toggleSubmit, toggleDelete} = this.props;
 
         return (
             <div>
@@ -58,13 +58,23 @@ class WorkHistory extends React.Component {
                                 value={details}
                             />
                         </div>
-                        <span
-                            data-name='workHistory'
-                            id={id}
-                            className='material-icons submit--btn submit--workHistory'
-                            onClick={toggleSubmit}>
-                            done
-                        </span>
+                        <div className='workHistory--btn--container'>
+                            <span
+                                data-name='workHistory'
+                                id={id}
+                                className='material-icons submit--btn submit--workHistory'
+                                onClick={toggleSubmit}>
+                                done
+                            </span>
+                            <span
+                                data-name='workHistory'
+                                id={id}
+                                className='material-icons delete--btn delete--workHistory'
+                                onClick={toggleDelete}>
+                                delete
+                            </span>
+                        </div>
+                        
                     </div>
                 :   <div className='workHistory--container info'>
                         <div className='workHistory--title'>

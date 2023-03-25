@@ -1,16 +1,11 @@
 import React from 'react'
+import uniqid from 'uniqid'
 import Header from './components/Header'
 import GeneralInfo from './components/GeneralInfo'
 import About from './components/About'
 import WorkHistory from './components/WorkHistory'
 import Education from './components/Education'
 import './styles/app.css'
-
-// add delete button that removes the array item from the appropriate array
-// display delete button when in edit mode for each array item
-// DONE for education --> update WorkHistory to function with delete button
-
-// figure out a new way to create unique ids for added array items
 
 class App extends React.Component {
   constructor(props) {
@@ -47,7 +42,7 @@ class App extends React.Component {
       },
       workHistory: [
         {
-          id: '0',
+          id: uniqid(),
           jobTitle: 'Manager',
           company: '2nd Company',
           dateRange: '2023 - Present',
@@ -55,7 +50,7 @@ class App extends React.Component {
           editMode: false
         }, 
         {
-          id: '1',
+          id: uniqid(),
           jobTitle: 'Production Lead',
           company: 'First Company',
           dateRange: '2019 - 2023',
@@ -65,14 +60,14 @@ class App extends React.Component {
       ],
       education: [
         {
-          id: '0',
+          id: uniqid(),
           certification: 'Fullstack Javascript',
           school: 'The Odin Project',
           dateRange: '2020 - Present',
           editMode: false
         },
         {
-          id: '1',
+          id: uniqid(),
           certification: 'Bachelors of Arts',
           school: 'Columbia Chicago',
           dateRange: '2011 - 2014',
@@ -90,6 +85,7 @@ class App extends React.Component {
     this.toggleDelete = this.toggleDelete.bind(this);
   }
 
+  // should re-factor the handleChange function to handle each component's state
   handleChange(e) {
     const { value } = e.target;
     const name = e.target.dataset.name;
@@ -251,11 +247,10 @@ class App extends React.Component {
   }
 
   addWorkHistory() {
-  
     const newWorkHistoryArr = [
       ...this.state.workHistory,
       {
-        id: `${this.state.workHistory.length}`,
+        id: uniqid(),
         jobTitle: 'Worker',
         company: 'Company Name',
         dateRange: '2023 - Present',
@@ -274,7 +269,7 @@ class App extends React.Component {
     const newEducationArr = [
       ...this.state.education,
       {
-        id: `${this.state.education.length}`,
+        id: uniqid(),
         certification: 'Bachelors Degree',
         school: 'Sky Academy',
         dateRange: '2020 - Present',
@@ -289,7 +284,6 @@ class App extends React.Component {
   }
 
   render() {
-
     const { name, title, phone, email, addressStreet, addressCity, about } = this.state;
 
     const workHistoryCards = this.state.workHistory.map(item => {
@@ -300,11 +294,11 @@ class App extends React.Component {
           handleWorkChange={this.handleWorkChange}
           toggleEdit={this.toggleEdit}
           toggleSubmit={this.toggleSubmit}
+          toggleDelete={this.toggleDelete}
         />
       )
     })
 
-    // mapping over education array
     const educationCards = this.state.education.map(item => {
       return (
         <Education 
