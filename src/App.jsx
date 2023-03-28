@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState } from 'react'
 import uniqid from 'uniqid'
 import Header from './components/Header'
 import GeneralInfo from './components/GeneralInfo'
@@ -7,11 +7,10 @@ import WorkHistory from './components/WorkHistory'
 import Education from './components/Education'
 import './styles/app.css'
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
+export default function App() {
 
-    this.state = {
+  const [state, setState] = useState(
+    {
       name: {
         text: 'Joe Schmoe',
         editMode: false
@@ -75,34 +74,28 @@ class App extends React.Component {
         }
       ]
     }
-    this.handleChange = this.handleChange.bind(this);
-    this.handleWorkChange = this.handleWorkChange.bind(this);
-    this.handleEducationChange = this.handleEducationChange.bind(this);
-    this.toggleEdit = this.toggleEdit.bind(this);
-    this.toggleSubmit = this.toggleSubmit.bind(this);
-    this.addEducation = this.addEducation.bind(this);
-    this.addWorkHistory = this.addWorkHistory.bind(this);
-    this.toggleDelete = this.toggleDelete.bind(this);
-  }
+  )
 
-  // should re-factor the handleChange function to handle each component's state
-  handleChange(e) {
+  // componenet methods
+  //-------------------
+
+  function handleChange(e) {
     const { value } = e.target;
     const name = e.target.dataset.name;
     
-    this.setState({
-      ...this.state,
+    setState({
+      ...state,
       [name]: {
-        ...this.state[name],
+        ...state[name],
         text: value
       }
     })
   }
 
-  handleWorkChange(e) {
+  function handleWorkChange(e) {
     const { value } = e.target;
     const name = e.target.dataset.name;
-    const { workHistory } = this.state;
+    const { workHistory } = state;
 
     const newWorkHistory = workHistory.map(item => {
       if (item.id === e.target.id) {
@@ -112,17 +105,17 @@ class App extends React.Component {
       }
     })
 
-    this.setState({
-      ...this.state,
+    setState({
+      ...state,
       workHistory : newWorkHistory
     })
 
   }
 
-  handleEducationChange(e) {
+  function handleEducationChange(e) {
     const { value } = e.target;
     const name = e.target.dataset.name;
-    const { education } = this.state;
+    const { education } = state;
 
     const newEducation = education.map(item => {
       if (item.id === e.target.id) {
@@ -132,18 +125,18 @@ class App extends React.Component {
       }
     })
 
-    this.setState({
-      ...this.state,
+    setState({
+      ...state,
       education : newEducation
     })
   }
 
-  toggleEdit(e) {
+  function toggleEdit(e) {
     const name = e.target.dataset.name;
 
     if (name === 'workHistory') {
 
-      const { workHistory } = this.state;
+      const { workHistory } = state;
 
       const newWorkHistory = workHistory.map(item => {
         if (item.id === e.target.id) {
@@ -153,13 +146,13 @@ class App extends React.Component {
         }
       });
       
-      this.setState({
-        ...this.state,
+      setState({
+        ...state,
         workHistory : newWorkHistory
       })
     } else if (name === 'education') {
 
-      const { education } = this.state;
+      const { education } = state;
 
       const newEducation = education.map(item => {
         if (item.id === e.target.id) {
@@ -169,27 +162,27 @@ class App extends React.Component {
         }
       });
       
-      this.setState({
-        ...this.state,
+      setState({
+        ...state,
         education : newEducation
       })
     } else {
-      this.setState({
-        ...this.state,
+      setState({
+        ...state,
         [name]: {
-          ...this.state[name],
-          editMode: !this.state[name].editMode
+          ...state[name],
+          editMode: !state[name].editMode
       }
       })
     }
   }
 
-  toggleSubmit(e) {
+  function toggleSubmit(e) {
     const name = e.target.dataset.name;
 
     if (name === 'workHistory') {
 
-      const { workHistory } = this.state;
+      const { workHistory } = state;
 
       const newWorkHistory = workHistory.map(item => {
         if (item.id === e.target.id) {
@@ -199,12 +192,12 @@ class App extends React.Component {
         }
       });
       
-      this.setState({
-        ...this.state,
+      setState({
+        ...state,
         workHistory : newWorkHistory
       })
     } else if (name === 'education') {
-      const { education } = this.state;
+      const { education } = state;
 
       const newEducation = education.map(item => {
         if (item.id === e.target.id) {
@@ -214,41 +207,40 @@ class App extends React.Component {
         }
       });
       
-      this.setState({
-        ...this.state,
+      setState({
+        ...state,
         education : newEducation
       })
     } else {
-      this.setState({
-        ...this.state,
+      setState({
+        ...state,
         [name]: {
-          ...this.state[name],
-          editMode: !this.state[name].editMode
+          ...state[name],
+          editMode: !state[name].editMode
       }
       })
     }
   }  
 
-  toggleDelete(e) {
+  function toggleDelete(e) {
     const name = e.target.dataset.name;
     const id = e.target.id;
 
-    console.log(this.state[name]);
-    const newArray = this.state[name].filter(item => {
+    const newArray = state[name].filter(item => {
       if (id !== item.id) {
         return item;
       }
     })
     
-    this.setState({
-      ...this.state,
+    setState({
+      ...state,
       [name]: newArray
     })
   }
 
-  addWorkHistory() {
+  function addWorkHistory() {
     const newWorkHistoryArr = [
-      ...this.state.workHistory,
+      ...state.workHistory,
       {
         id: uniqid(),
         jobTitle: 'Worker',
@@ -259,15 +251,15 @@ class App extends React.Component {
       }
     ];
 
-    this.setState({
-      ...this.state,
+    setState({
+      ...state,
       workHistory: newWorkHistoryArr
     })
   }
 
-  addEducation() {
+  function addEducation() {
     const newEducationArr = [
-      ...this.state.education,
+      ...state.education,
       {
         id: uniqid(),
         certification: 'Bachelors Degree',
@@ -277,92 +269,90 @@ class App extends React.Component {
       }
     ];
 
-    this.setState({
-      ...this.state,
+    setState({
+      ...state,
       education: newEducationArr
     })
   }
 
-  render() {
-    const { name, title, phone, email, addressStreet, addressCity, about } = this.state;
+  
+  const { name, title, phone, email, addressStreet, addressCity, about } = state;
 
-    const workHistoryCards = this.state.workHistory.map(item => {
-      return (
-        <WorkHistory
-          key={item.id}
-          {...item}
-          handleWorkChange={this.handleWorkChange}
-          toggleEdit={this.toggleEdit}
-          toggleSubmit={this.toggleSubmit}
-          toggleDelete={this.toggleDelete}
-        />
-      )
-    })
-
-    const educationCards = this.state.education.map(item => {
-      return (
-        <Education 
-          key={item.id}
-          {...item}
-          handleEducationChange={this.handleEducationChange}
-          toggleEdit={this.toggleEdit}
-          toggleSubmit={this.toggleSubmit}
-          toggleDelete={this.toggleDelete}
-        />
-      )
-    })
-
+  const workHistoryCards = state.workHistory.map(item => {
     return (
-      <div className="App">
-        <Header />
-        <div className='resume--container'>
-          <GeneralInfo 
-            handleChange={this.handleChange}
-            toggleEdit={this.toggleEdit}
-            toggleSubmit={this.toggleSubmit}
-            userName={name}
-            userTitle={title}
-            userPhone={phone}
-            userEmail={email}
-            userStreet={addressStreet}
-            userCity={addressCity}
-          />
-          <About 
-            about={about}
-            handleChange={this.handleChange}
-            toggleEdit={this.toggleEdit}
-            toggleSubmit={this.toggleSubmit}
-          />
-          <div className='section--workHistory--wrapper'>  
-            <h2 className='workHistory--title'>WORK HISTORY</h2>
-            <span
-                data-name='add-workHistory'
-                className='material-icons add--btn workHistory--add--btn'
-                onClick={this.addWorkHistory}
-            >
-              add
-            </span>
-          </div>
-          <div className='workHistory--list'> 
-            {workHistoryCards}
-          </div>
-          <div className='section--education--wrapper'>
-            <h2 className='education--title'>EDUCATION</h2>
-            <span
-                data-name='add-education'
-                className='material-icons add--btn education--add--btn'
-                onClick={this.addEducation}
-            >
-              add
-            </span>
-          </div>
-          <div className='education--list'>
-            {educationCards}
-          </div>
+      <WorkHistory
+        key={item.id}
+        {...item}
+        handleWorkChange={handleWorkChange}
+        toggleEdit={toggleEdit}
+        toggleSubmit={toggleSubmit}
+        toggleDelete={toggleDelete}
+      />
+    )
+  })
+
+  const educationCards = state.education.map(item => {
+    return (
+      <Education 
+        key={item.id}
+        {...item}
+        handleEducationChange={handleEducationChange}
+        toggleEdit={toggleEdit}
+        toggleSubmit={toggleSubmit}
+        toggleDelete={toggleDelete}
+      />
+    )
+  })
+
+  return (
+    <div className="App">
+      <Header />
+      <div className='resume--container'>
+        <GeneralInfo 
+          handleChange={handleChange}
+          toggleEdit={toggleEdit}
+          toggleSubmit={toggleSubmit}
+          userName={name}
+          userTitle={title}
+          userPhone={phone}
+          userEmail={email}
+          userStreet={addressStreet}
+          userCity={addressCity}
+        />
+        <About 
+          about={about}
+          handleChange={handleChange}
+          toggleEdit={toggleEdit}
+          toggleSubmit={toggleSubmit}
+        />
+        <div className='section--workHistory--wrapper'>  
+          <h2 className='workHistory--title'>WORK HISTORY</h2>
+          <span
+              data-name='add-workHistory'
+              className='material-icons add--btn workHistory--add--btn'
+              onClick={addWorkHistory}
+          >
+            add
+          </span>
+        </div>
+        <div className='workHistory--list'> 
+          {workHistoryCards}
+        </div>
+        <div className='section--education--wrapper'>
+          <h2 className='education--title'>EDUCATION</h2>
+          <span
+              data-name='add-education'
+              className='material-icons add--btn education--add--btn'
+              onClick={addEducation}
+          >
+            add
+          </span>
+        </div>
+        <div className='education--list'>
+          {educationCards}
         </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
-export default App;
